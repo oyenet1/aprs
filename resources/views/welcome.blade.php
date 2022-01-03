@@ -16,32 +16,51 @@
   <!-- Scripts -->
   <script src="{{ asset('js/app.js') }}" defer></script>
 </head>
-<body class="fixed p-0 inset-0 w-screen  min-h-screen bg-cover bg-center" style="background-image: url('/img/event3.jpg')">
-  <div class="w-full fixed top-0 h-screen bg-pink-600 m-0 bg-opacity-50">
-    <div class="flex w-full justify-between items-center my-4 max-w-7xl mx-auto">
-      <a href="/" class="text-smtext-2xl lg:text-3xl text-white dark:text-gray-500  font-semibold">Uniabuja Eventer Center</a>
-      <div class="space-x-4">
-        <a href="/verify" class="hover:bg-green-800 transition duration-1000 hover:text-white text-sm  dark:text-gray-500 font-semibold px-12 py-2 border-2 border-pink-600 text-white rounded-full">Verify Ticket</a>
-        <a href="{{ route('login') }}" class="hover:bg-white hover:text-green-800 transition duration-1000  text-sm  dark:text-gray-500 font-semibold px-12 bg-pink-600 border-pink-600 text-white py-2 border-2 rounded-full">Log in</a>
-      </div>
+<body class="fixed p-0 inset-0 w-screen  min-h-screen bg-cover bg-center">
+  <div class="w-full flex flex-wrap flex-col bg-green-800 md:flex-row m-0 bg-opacity-50 h-screen">
+    <div class="md:flex w-full md:w-1/2 bg-center hidden" style="background-image: url('/img/uniabj.jpg')">
+
     </div>
     {{-- another one --}}
-    <div class="flex flex-col justify-center h-screen space-y-8">
-      <h1 class="text-white text-3xl text-center capitalize font-bold">Check active events <a href="/events" class="text-blue-600">Here</a></h1>
-      <div class="w-full max-w-7xl mx-auto grid lg:grid-cols-3 gap-4 lg:gap-12">
-        <div class="w-full rounded-xl shadow-md hover:shadow-2xl transition duration-500 hover:scale-105 bg-white overflow-hidden">
-          <img src="/img/event1.jpg" alt="" class="w-full block">
-          <p class="p-3 text-gray-500 text-lg">A new music event</p>
+    <div class="flex flex-col my-auto justify-around w-full md:w-1/2 bg-green-50 h-full">
+      
+      <form method="POST" action="{{ route('login') }}" class="my-auto mx-4 rounded p-4 shadow-sm bg-white w-full md:w-1/2 md:mx-auto">
+        @csrf
+        <h1 class="font-bold text-2xl my-8 text-center">Login</h1>
+        <!-- Email Address -->
+        <div>
+          <x-label for="email" :value="__('Email')" />
+
+          <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus />
         </div>
-        <div class="w-full rounded-xl shadow-md hover:shadow-2xl transition duration-500 hover:scale-105 bg-white overflow-hidden">
-          <img src="/img/event1.jpg" alt="" class="w-full block">
-          <p class="p-3 text-gray-500 text-lg">A new music event</p>
+
+        <!-- Password -->
+        <div class="mt-4">
+          <x-label for="password" :value="__('Password')" />
+
+          <x-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="current-password" />
         </div>
-        <div class="w-full rounded-xl shadow-md hover:shadow-2xl transition duration-500 hover:scale-105 bg-white overflow-hidden">
-          <img src="/img/event1.jpg" alt="" class="w-full block">
-          <p class="p-3 text-gray-500 text-lg">A new music event</p>
+
+        <!-- Remember Me -->
+        <div class="block mt-4">
+          <label for="remember_me" class="inline-flex items-center">
+            <input id="remember_me" type="checkbox" class="rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" name="remember">
+            <span class="ml-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
+          </label>
         </div>
-      </div>
+
+        <div class="flex items-center justify-end mt-4">
+          {{-- @if (Route::has('password.request'))
+          <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('password.request') }}">
+            {{ __('Forgot your password?') }}
+          </a>
+          @endif --}}
+
+          <x-button class="text-center mx-auto bg-green-600">
+            {{ __('Log in') }}
+          </x-button>
+        </div>
+      </form>
     </div>
   </div>
 </body>
