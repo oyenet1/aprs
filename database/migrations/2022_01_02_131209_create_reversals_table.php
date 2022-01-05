@@ -16,7 +16,7 @@ class CreateReversalsTable extends Migration
         Schema::create('reversals', function (Blueprint $table) {
             $table->id();
             $table->foreignId('payment_id')->constrained();
-            $table->string('status');
+            $table->string('status')->default('processing');
             $table->timestamps();
         });
     }
