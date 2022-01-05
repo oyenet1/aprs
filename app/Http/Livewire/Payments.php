@@ -3,14 +3,11 @@
 namespace App\Http\Livewire;
 
 use App\Models\Payment;
-use App\Models\User;
 use Livewire\Component;
-use Illuminate\Database\Eloquent\Builder;
 use Livewire\WithPagination;
+use Illuminate\Database\Eloquent\Builder;
 
-// use Illuminate\Database\Query\Builder;
-
-class Users extends Component
+class Payments extends Component
 {
     use WithPagination;
 
@@ -27,7 +24,7 @@ class Users extends Component
 
     public function confirmDelete($id)
     {
-        $student = User::findOrFail($id);
+        $student = Payment::findOrFail($id);
 
         $this->delete = $id;
 
@@ -37,7 +34,7 @@ class Users extends Component
     public function delete()
     {
 
-        $student = User::findOrFail($this->delete);
+        $student = Payment::findOrFail($this->delete);
 
         $true = $student->delete();
         $this->resetPage();
@@ -45,7 +42,7 @@ class Users extends Component
         if ($true) {
             $this->dispatchBrowserEvent('swal:success', [
                 'icon' => 'success',
-                'text' => 'Student has deleted Successfully from the school',
+                'text' => 'Student has deleted Successfully from the records',
                 'title' => 'Student Deleted',
                 'timer' => 4000,
             ]);
@@ -55,10 +52,9 @@ class Users extends Component
     public function render()
     {
         $search = '%' . $this->search . '%';
-        $payments = auth()->user()->payments;
-        $students = User::whereHas('roles', function (Builder $query) {
-            $query->where('name', 'students');
-        })->with(['roles'])->where('reg_no', 'LIKE', $search)->paginate($this->perPage);
-        return view('livewire.users', compact(['students', 'payments']));
+        $payments = Payment::whereHas('user', function (Builder $query) {
+            $query->where('name', 'LIKE', $this->search);
+        })->with(['user'])->where('reference', 'LIKE', $search)->orWhere('amount', 'LIKE', $search)->orWhere('purpose', 'LIKE', $search)->paginate($this->perPage);
+        return view('livewire.payments', compact(['payments']));
     }
 }

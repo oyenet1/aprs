@@ -172,7 +172,7 @@ return [
          * Method to be called in the middleware return case.
          * Available: abort|redirect
          */
-        'handling' => 'abort',
+        'handling' => 'redirect',
 
         /**
          * Handlers for the unauthorized method in the middlewares.
@@ -194,10 +194,10 @@ return [
              * If the message content is empty it won't be added to the redirection.
              */
             'redirect' => [
-                'url' => '/',
+                'url' => '/dashboard',
                 'message' => [
                     'key' => 'error',
-                    'content' => 'You donot have the right to visit'
+                    'content' => 'You donot have the right to visit the attempted page or perform that action'
                 ]
             ]
         ]

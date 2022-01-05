@@ -30,7 +30,9 @@
           @forelse ($students as $student)
           <tr class="odd:bg-gray-50 even:bg-gray-500 border-b">
             <td class="p-2">{{ $loop->iteration }}</td>
-            <td class="p-2">{{ $student->name }}</td>
+            <td class="p-2">
+              <a href="{{ route('profile', $student->id) }}" class="text-blue-500 font-semibold">{{ $student->name }}</a>
+            </td>
             <td class="p-2 uppercase text-green-500 font-semibold">{{ $student->reg_no }}</td>
             <td class="p-2">{{ $student->phone }}</td>
             <td class="p-2">{{ $student->email }}</td>

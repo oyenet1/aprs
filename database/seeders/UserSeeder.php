@@ -25,7 +25,7 @@ class UserSeeder extends Seeder
         for ($i = 0; $i < random_int(500, 1000); $i++) {
             User::create([
                 'name' => $faker->firstName . " " . $faker->lastName,
-                'reg_no' => $prefix[array_rand($prefix)] . '/'. Str::random(4) . '00/' . random_int(1, 50),
+                'reg_no' => $prefix[array_rand($prefix)] . '/'. Str::random(4) . '/00' . random_int(1, 50),
                 'email' =>$faker->email,
                 'phone' =>$faker->phoneNumber,
                 'level' =>$level[array_rand($level)],

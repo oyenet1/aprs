@@ -19,6 +19,9 @@ Route::get('/', function () {
 });
 
 Route::get('/students', App\Http\Livewire\Users::class)->name('students');
+Route::get('/payments', App\Http\Livewire\Payments::class)->name('payments');
+Route::get('/reversals', App\Http\Livewire\Reversals::class)->name('reversal');
+Route::get('/fees', App\Http\Livewire\Fees::class)->name('fees');
 Route::get('/profile/{id}', ShowProfile::class)->name('profile');
 
 Route::get('/dashboard', function () {

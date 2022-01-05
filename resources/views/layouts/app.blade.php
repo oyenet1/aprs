@@ -25,7 +25,7 @@
     <!-- Page Heading -->
     <header class="bg-white shadow">
       <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8 flex items-center space-x-2 bg-green-50">
-        {{ $header }}
+        {{ $header ?? '' }}
       </div>
     </header>
 
@@ -56,6 +56,44 @@
       }).then((result) => {
         if (result.isConfirmed) {
           Livewire.emit('deleteConfirm');
+          // Swal.fire(
+          //   'Deleted!'
+          //   , 'Your file has been deleted'
+          //   , 'success'
+          // )
+        }
+      });
+    });
+    window.addEventListener('swal:approve', event => {
+      Swal.fire({
+        title: 'Do you really want to approve this request?'
+        , text: "You won\'t be able to revert this action!"
+        , icon: 'warning'
+        , showCancelButton: true
+        , cancelButtonColor: '#f11'
+        , confirmButtonText: 'Yes approve it'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          Livewire.emit('approve');
+          // Swal.fire(
+          //   'Deleted!'
+          //   , 'Your file has been deleted'
+          //   , 'success'
+          // )
+        }
+      });
+    });
+    window.addEventListener('swal:deny', event => {
+      Swal.fire({
+        title: 'Did you really want to deny this request?'
+        , text: "You won\'t be able to undo this!"
+        , icon: 'warning'
+        , showCancelButton: true
+        , cancelButtonColor: '#f11'
+        , confirmButtonText: 'Yes deny it'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          Livewire.emit('deny');
           // Swal.fire(
           //   'Deleted!'
           //   , 'Your file has been deleted'

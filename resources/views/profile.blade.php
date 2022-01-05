@@ -157,6 +157,7 @@
         </div>
       </form>
     </div>
+    @if ($payments->count() > 0)
     <div class="rounded shadow-sm bg-white divide-y flex flex-col space-y-4 overflow-hidden w-full box-border px-0 pb-4 ">
       <div class="div flex p-2 justify-between border-b bg-white">
         <h1 class="flex space-x-3 items-center">
@@ -184,19 +185,31 @@
           </tr>
         </thead>
         <tbody class="">
-          @for($i = 1, $j = date('Y'), $k = (date('Y') - 1), $level = 400; $i <= 4; $i++, $j--, $k--, $level +=100) <tr class="border odd:bg-gray-50 text-left">
+          {{-- @for($i = 1, $j = date('Y'), $k = (date('Y') - 1), $level = 400; $i <= 4; $i++, $j--, $k--, $level +=100) <tr class="border odd:bg-gray-50 text-left">
             <td class="p-2">{{$i }}</td>
-            <td class="p-2">{{ $k . '/' . $j }}</td>
-            <td class="p-2">School Fees</td>
-            <td class="p-2">{{ $level }}</td>
+          <td class="p-2">{{ $k . '/' . $j }}</td>
+          <td class="p-2">School Fees</td>
+          <td class="p-2">{{ $level }}</td>
+          <td class="p-2">
+            <span class="p-1 bg-yellow-500 text-white rounded text-sm">Query</span>
+          </td>
+          </tr>
+          @endfor --}}
+          @foreach ($payments as $payment)
+          <tr class="border odd:bg-gray-50 text-left">
+            <td class="p-2">{{$loop->iteration }}</td>
+            <td class="p-2">{{ dateSession($payment->date_payed) }}</td>
+            <td class="p-2 capitalize">{{ $payment->purpose }}</td>
+            <td class="p-2 capitalize">{{ $payment->user->level }}</td>
             <td class="p-2">
-              <span class="p-1 bg-yellow-500 text-white rounded text-sm">Query</span>
+              <a href="javascript:void(0)" class="py-1 px-2 bg-yellow-500 text-white rounded text-sm">Query</a>
             </td>
-            </tr>
-            @endfor
+          </tr>
+          @endforeach
         </tbody>
       </table>
     </div>
+    @if ($user->reversals->count() > 0)
     <div class="rounded shadow-sm bg-white divide-y flex flex-col space-y-4 overflow-hidden w-full box-border px-0 pb-4 ">
       <div class="div flex p-2 justify-between border-b bg-white">
         <h1 class="flex space-x-3 items-center">
@@ -217,21 +230,39 @@
         <thead class="p-2 text-left">
           <tr class="text-left">
             <th class="p-2">NO</th>
-            <th class="p-2">Payment Description</th>
+            <th class="p-2">Payment Amount</th>
+            <th class="p-2">Purpose</th>
             <th class="p-2">Status</th>
-            <th class="p-2">Date</th>
+            {{-- <th class="p-2">Date</th> --}}
           </tr>
         </thead>
         <tbody class="">
-          @for($i = 1, $j = date('Y'), $k = (date('Y') - 1), $level = 400; $i <= 4; $i++, $j--, $k--, $level +=100) <tr class="border odd:bg-gray-50 text-left">
+          {{-- @for($i = 1, $j = date('Y'), $k = (date('Y') - 1), $level = 400; $i <= 4; $i++, $j--, $k--, $level +=100) <tr class="border odd:bg-gray-50 text-left">
             <td class="p-2">{{$i }}</td>
-            <td class="p-2">{{ $k . '/' . $j }}</td>
-            <td class="p-2">School Fees</td>
-            <td class="p-2">{{ date('Y-m-d') }}</td>
-            </tr>
-            @endfor
+          <td class="p-2">{{ $k . '/' . $j }}</td>
+          <td class="p-2">School Fees</td>
+          <td class="p-2">{{ date('Y-m-d') }}</td>
+          </tr>
+          @endfor --}}
+          @foreach ($user->reversals as $reversal)
+          <tr class="border odd:bg-gray-50 text-left">
+            <td class="p-2">{{$loop->iteration }}</td>
+            <td class="p-2 capitalize">
+              <span class="text-white px-2 py-1 rounded bg-green-500 text-sm">&#8358;{{ moneyFormat($reversal->payment->amount) }}</span>
+            </td>
+            <td class="p-2 capitalize">{{ $reversal->payment->purpose }}</td>
+            <td class="p-2 capitalize">{{ $reversal->status }}</td>
+            {{-- <td class="p-2">{{ date('Y-m-d') }}</td> --}}
+          </tr>
+          @endforeach
         </tbody>
       </table>
     </div>
+    @else
+    <h1 class="text-2xl text-gray-400 text-center my-auto">No Reversal request yet, kindly click on query if made double payment, or got debited if the transaction is unsuccessful and you get debited</h1>
+    @endif
+    @else
+    <h1 class="text-2xl">No payment yet</h1>
+    @endif
   </div>
 </x-app-layout>

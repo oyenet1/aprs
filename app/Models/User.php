@@ -52,4 +52,9 @@ class User extends Authenticatable
     {
      return $this->hasMany(Payment::class);
     }
+
+    public function reversals()
+    {
+     return $this->hasManyThrough(Reversal::class, Payment::class);
+    }
 }
