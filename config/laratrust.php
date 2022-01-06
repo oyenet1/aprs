@@ -197,7 +197,7 @@ return [
                 'url' => '/dashboard',
                 'message' => [
                     'key' => 'error',
-                    'content' => 'You donot have the right to visit the attempted page or perform that action'
+                    'content' => 'You cannot access the page'
                 ]
             ]
         ]
