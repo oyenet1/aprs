@@ -35,7 +35,7 @@ Route::get('/dashboard', function () {
     } elseif (auth()->user()->hasRole('bankadmin')) {
         return redirect('/reversals');
     } else {
-        return view('/profile/{Auth::user()->id}');
+        return redirect()->route('profile', auth()->user()->id);
     }
 })->middleware(['auth'])->name('dashboard');
 
