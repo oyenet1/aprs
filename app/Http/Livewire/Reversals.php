@@ -110,7 +110,7 @@ class Reversals extends Component
     public function render()
     {
         // $search = '%' . $this->search . '%';
-        $reversals = Reversal::with(['payment'])->where('status', 'processing')->orderBy('status', 'desc')->paginate($this->perPage);
+        $reversals = Reversal::with(['payment'])->where('status', 'processing')->orderBy('created_at', 'desc')->paginate($this->perPage);
         return view('livewire.reversals', compact(['reversals']));
     }
 }

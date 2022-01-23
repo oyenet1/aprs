@@ -18,11 +18,13 @@ class Query extends Component
         if ($true) {
             $this->dispatchBrowserEvent('swal:success', [
                 'icon' => 'success',
-                'text' => 'If the reversal is succesful, you should have your money return to your bank account',
+                'text' => 'If the reversal request is succesful, kindly checking the status of the request',
                 'title' => 'Reversal Submitted',
-                'timer' => 4000,
+                'timer' => 5000,
             ]);
         }
+
+        return redirect()->back();
     }
 
     public function render()
