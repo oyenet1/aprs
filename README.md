@@ -67,14 +67,14 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 
 <div style="width:100%; max-width: 1024px; margin: 2px auto; padding: 10px; border: 1px #eee solid; border-radius:8px">
 
-# APRS (Automated Payment Revasal System)
-### Imagine not having to panic when there is an issue with payments as a student. Occasionally student face challanges making payment for various things on the portal, and when this happens such sudent goes through physical, mental and emotional stress, to clear the issue such student might need to make numerous trips to the bank and to school. 
-### The APRS system is a glitch free software that is designed to provide students who might have any issue with payments on the school portal be it unsucessful payment, double payment etc with a platforn to issue a complaint about such payment and receive immediate attention from the school and the bank without having to make trips to anywhere. Simply login to the platform from the comfort of your own device aanywhere and you will havve access to both your school and the bank. 
-### The APRS software is a platform that links the student, school and the bank providing a seamless way of making complaints with just a few clicks you will be connected to right people who can help you out. Not only does our software save time and effort, it also ensures that your concerns are addressed promtly. It's all about making things easier for students.  
+# APRS (Automated Payment Reversal System)
+### Imagine not having to panic when there is an issue with payments as a student. Occasionally student face challanges making payment for various things on the portal. Issues like double payment, unsuccessful payment, incorrect payment amount etc and when this happens such student goes through physical, mental and emotional stress, to clear the issue the student might need to make numerous trips to the bank. With the APRS system any payment issue can be queried and payment reversal will be made without going to the bank. 
+### The APRS system is a glitch free software that is designed to provide students who might have any issue with payments on the school portal be it unsucessful payment, double payment etc with a platforn to issue a complaint about such payment and receive immediate attention from the school and the bank without having to make trips to anywhere. Simply login to the platform from the comfort of your own device anywhere and you will have access to both your school and the bank. 
+### The APRS software is a platform that links the student, school and the bank providing a seamless way of making complaints with just a few clicks your query will be made and your complaint gets immediate attention from the right people who can help you out. Not only does our software save time and effort, it also ensures that your concerns are addressed promtly. It's all about making things easier for students.  
 
 ## System Requirements
 
-### The system requirements are divided into two:
+### The system requirements are divided into two:The Hardware requirements and the Software requirements.
 
 The minimum system requirement for this application to run is any system(PC) that possess the following attributes
 
@@ -95,7 +95,7 @@ System architecture is a high-level design or blueprint that outlines the struct
 
 ### Use case diagram
 
-A use case diagram is a diagram that shows the interaction between users and a system, it also helps to understand how the system is used and different actions it can perform.
+A use case diagram is a diagram that shows the interaction between users and a system, it also helps to understand how the system is used and different actions it can perform. The APRS system has three users: the students, the school and the bank. 
 ![Use Case diagram](<public/img/APRS use case.png>)
 
 ### Data flow diagram
@@ -104,7 +104,7 @@ A Data flow diagram shows how data moves through a system. It illustrates the fl
 ![Dataflow diagram](<public/img/aprs. dataflow.png>)
 
 ### ERD (Entity Relationship diagram)
-This diagram shows the relationship between entities in a database. It helps to understand the structure and organisation of data in a database system.
+This diagram shows the object(tables) and their  relationship with one another. It helps to understand the structure and organisation of data in a database system.
 ![ERD diagram](public/img/aprs-erd-diagram.png)
 
 ## Installation Guide
@@ -122,7 +122,7 @@ Running this software project from GitHub involves a few steps. You can do this 
 
 cd your_project_directory
 
-git clone https://github.com/oyenet1/course_allocation.git
+git clone https://github.com/oyenet1/aprs.git
 
 # Navigate to the project folder
 cd course_allocation
@@ -164,7 +164,7 @@ DB_PASSWORD=your_database_password
 
 **Step 6: Run Database Migrations and Seeders**
 
-The command below below will create tables and seed the tables with dummy data
+The command below below will create tables and create the tables with dummy data
 
 ```sh
     php artisan migrate:fresh --seed
@@ -206,27 +206,30 @@ Every student on the system has a profile which shows the basic information abou
 ![Student Dashbord](<public/img/Student Profile.PNG>)
  * Payment Query
  Students make query on any payment on their profile and wait for reversal. 
-![Query](public/img/Query.PNG)
+![Query](<public/img/Payment Query.png>)
 When a query has been made for reversal.
-![Alt text](<public/img/Reversal Request.PNG>)
+![Reversal Request](<public/img/Reversal Request.PNG>)
 While the payment query is processing the status of any payment that has been quereied will be processing. 
-![Payment reversal processing](<public/img/Payment reversal processing.PNG>)
+![Reversal Processing](<public/img/Query Processing.png>)
 When the payment reversal request has been approved, the status of the payment changes to approved.
-![Payment Reversal](<public/img/Payment reversal 1.PNG>)
-![Payment Reversal](<public/img/Payment reversal.PNG>)
+![Alt text](<public/img/Payment reversal approved.png>)
 
 
 **As an Admin(School)**
 The admis has access to the students on the system and the payments that have been made and payments that was queried. The Admin can delete a student from the system if need be.  
 ![Students List](<public/img/Students list.PNG>)
 ![Payment List](<public/img/Payments list.PNG>)
-![Delete student alert](<public/img/Delete student.PNG>)
+To delete a student from the system
+![Delete Student](<public/img/To delete student.png>)
 
 
 **As The Bank**
 The bank has the sole responsibility of approving or denying payment reversal query. 
-![Reversal Request List](<public/img/Reversal Requests list.PNG>)
-![Reversal Approve alert](<public/img/Reversal approve alert.PNG>)
+![Payment list](<public/img/Payment list.PNG>)
+When the bank approves a payment
+![To approve reversal payment](<public/img/To approve.png>)
+![Reversal approve alert](<public/img/Payment reversal alert.png>)
 ![Reversal Request Approved](<public/img/Reversal Approve.PNG>)
-![Reversal deny alert](<public/img/Reversal dent alert.PNG>)
+When the bank denies a reversal payment
+![Reversal denied](<public/img/To deny.png>)
 ![Reversal Denied](<public/img/Reversal denied.PNG>)
